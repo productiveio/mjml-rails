@@ -7,8 +7,7 @@ module Mjml
   class Mjmltemplate
     def self.to_html(compiled_source)
       # Mjml::Parser.new(compiled_source).render.html_safe
-      # test this:
-      binding.pry
+
       resp = AWS_LAMBDA_CLIENT.invoke({
         function_name: "mjml-prod-to-html",
         payload: { mjml: compiled_source }.to_json
