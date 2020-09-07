@@ -7,7 +7,7 @@ require "rubygems"
 require "open3"
 
 module Mjml
-  mattr_accessor :template_language, :raise_render_exception, :mjml_binary_version_supported, :mjml_binary_error_string, :beautify, :minify, :validation_level
+  mattr_accessor :template_language, :raise_render_exception, :mjml_binary_version_supported, :mjml_binary_error_string, :beautify, :minify, :validation_level, :aws_region
 
   @@template_language = :erb
   @@raise_render_exception = true
@@ -16,6 +16,8 @@ module Mjml
   @@beautify = true
   @@minify = false
   @@validation_level = "soft"
+  @@aws_region = 'us-east-1'
+  @@lambda_client = Aws::Lambda::Client.new(region: @@aws_region)
 
   def self.check_version(bin)
     IO.popen([bin, '--version']) { |io| io.read.include?("mjml-core: #{Mjml.mjml_binary_version_supported}") }
