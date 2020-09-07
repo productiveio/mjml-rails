@@ -5,6 +5,7 @@ require "mjml/mjmltemplate"
 require "mjml/railtie"
 require "rubygems"
 require "open3"
+require "aws-sdk-lambda"
 
 module Mjml
   mattr_accessor :template_language, :raise_render_exception, :mjml_binary_version_supported, :mjml_binary_error_string, :beautify, :minify, :validation_level, :aws_region
